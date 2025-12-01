@@ -1,0 +1,19 @@
+# OS specific
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (just in case)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build output (if any in future)
+dist/
+build/
