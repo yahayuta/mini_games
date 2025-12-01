@@ -2,17 +2,17 @@ const { Engine, Render, Runner, World, Bodies, Body, Events, Composite } = Matte
 
 // Game Constants
 const FRUITS = [
-    { label: 'cherry', radius: 15, color: '#F54242', score: 2 },
-    { label: 'strawberry', radius: 23, color: '#F5428D', score: 4 },
-    { label: 'grape', radius: 30, color: '#A442F5', score: 6 },
-    { label: 'dekopon', radius: 37, color: '#F5A442', score: 8 },
-    { label: 'orange', radius: 45, color: '#F58D42', score: 10 },
-    { label: 'apple', radius: 55, color: '#FF3333', score: 12 },
-    { label: 'pear', radius: 65, color: '#D4F542', score: 14 },
-    { label: 'peach', radius: 75, color: '#F542C5', score: 16 },
-    { label: 'pineapple', radius: 85, color: '#F5E942', score: 18 },
-    { label: 'melon', radius: 100, color: '#42F56C', score: 20 },
-    { label: 'watermelon', radius: 120, color: '#2E8B57', score: 22 },
+    { label: 'cherry', radius: 15, color: '#F54242', score: 2, emoji: '🍒' },
+    { label: 'strawberry', radius: 23, color: '#F5428D', score: 4, emoji: '🍓' },
+    { label: 'grape', radius: 30, color: '#A442F5', score: 6, emoji: '🍇' },
+    { label: 'dekopon', radius: 37, color: '#F5A442', score: 8, emoji: '🍊' },
+    { label: 'orange', radius: 45, color: '#F58D42', score: 10, emoji: '🍊' },
+    { label: 'apple', radius: 55, color: '#FF3333', score: 12, emoji: '🍎' },
+    { label: 'pear', radius: 65, color: '#D4F542', score: 14, emoji: '🍐' },
+    { label: 'peach', radius: 75, color: '#F542C5', score: 16, emoji: '🍑' },
+    { label: 'pineapple', radius: 85, color: '#F5E942', score: 18, emoji: '🍍' },
+    { label: 'melon', radius: 100, color: '#42F56C', score: 20, emoji: '🍈' },
+    { label: 'watermelon', radius: 120, color: '#2E8B57', score: 22, emoji: '🍉' },
 ];
 
 const WALL_THICKNESS = 20;
@@ -46,17 +46,17 @@ const render = Render.create({
 });
 
 // Create Walls
-const ground = Bodies.rectangle(GAME_WIDTH / 2, GAME_HEIGHT + WALL_THICKNESS / 2 - 10, GAME_WIDTH, WALL_THICKNESS, { 
+const ground = Bodies.rectangle(GAME_WIDTH / 2, GAME_HEIGHT + WALL_THICKNESS / 2 - 10, GAME_WIDTH, WALL_THICKNESS, {
     isStatic: true,
-    render: { fillStyle: '#transparent' }
+    render: { fillStyle: 'transparent' }
 });
-const leftWall = Bodies.rectangle(0 - WALL_THICKNESS / 2, GAME_HEIGHT / 2, WALL_THICKNESS, GAME_HEIGHT * 2, { 
+const leftWall = Bodies.rectangle(0 - WALL_THICKNESS / 2, GAME_HEIGHT / 2, WALL_THICKNESS, GAME_HEIGHT * 2, {
     isStatic: true,
-    render: { fillStyle: '#transparent' }
+    render: { fillStyle: 'transparent' }
 });
-const rightWall = Bodies.rectangle(GAME_WIDTH + WALL_THICKNESS / 2, GAME_HEIGHT / 2, WALL_THICKNESS, GAME_HEIGHT * 2, { 
+const rightWall = Bodies.rectangle(GAME_WIDTH + WALL_THICKNESS / 2, GAME_HEIGHT / 2, WALL_THICKNESS, GAME_HEIGHT * 2, {
     isStatic: true,
-    render: { fillStyle: '#transparent' }
+    render: { fillStyle: 'transparent' }
 });
 
 World.add(world, [ground, leftWall, rightWall]);
@@ -100,7 +100,10 @@ function createFruit(x, y, typeIndex, isStatic = false) {
     const fruit = Bodies.circle(x, y, fruitDef.radius, {
         isStatic: isStatic,
         restitution: 0.2,
-        render: { fillStyle: fruitDef.color },
+        render: {
+            fillStyle: fruitDef.color,
+            opacity: 0.8 // Make it slightly transparent to look nice
+        },
         label: fruitDef.label
     });
     fruit.typeIndex = typeIndex;
@@ -109,7 +112,7 @@ function createFruit(x, y, typeIndex, isStatic = false) {
 
 function spawnNewFruit() {
     if (isGameOver) return;
-    
+
     // Pick random fruit (0 to 4)
     const typeIndex = nextFruitType !== null ? nextFruitType : Math.floor(Math.random() * 5);
     nextFruitType = Math.floor(Math.random() * 5); // Prepare next
@@ -125,7 +128,7 @@ function dropFruit() {
     disableAction = true;
     Body.setStatic(currentFruit, false);
     currentFruit = null;
-    
+
     setTimeout(() => {
         spawnNewFruit();
     }, 1000);
@@ -136,10 +139,8 @@ function updateNextFruitDisplay() {
     container.innerHTML = '';
     const fruitDef = FRUITS[nextFruitType];
     const preview = document.createElement('div');
-    preview.style.width = `${fruitDef.radius * 1.5}px`; // Scale down slightly for UI
-    preview.style.height = `${fruitDef.radius * 1.5}px`;
-    preview.style.backgroundColor = fruitDef.color;
-    preview.style.borderRadius = '50%';
+    preview.style.fontSize = '40px';
+    preview.innerText = fruitDef.emoji;
     container.appendChild(preview);
 }
 
@@ -160,7 +161,7 @@ Events.on(engine, 'collisionStart', (event) => {
             if (bodyA.typeIndex === bodyB.typeIndex) {
                 // Merge logic
                 const typeIndex = bodyA.typeIndex;
-                
+
                 // If max level, just remove (or keep? Suika usually stops at Watermelon)
                 // Standard Suika: Two watermelons disappear
                 if (typeIndex === FRUITS.length - 1) {
@@ -186,52 +187,30 @@ Events.on(engine, 'collisionStart', (event) => {
 // Game Over Logic
 Events.on(engine, 'afterUpdate', () => {
     if (isGameOver) return;
-
-    // Check if any fruit is above the deadline and is not the current aiming fruit
-    const bodies = Composite.allBodies(world);
-    for (const body of bodies) {
-        if (!body.isStatic && body.position.y < DEADLINE_Y && body.velocity.y > -0.1 && body.velocity.y < 0.1) {
-            // Check if it's settled above line. 
-            // To be more forgiving, we can use a timer or check if it stays there.
-            // For simplicity: if a dynamic body is above Y=100, game over.
-            // But we need to ignore the just-dropped fruit.
-            // Usually there's a delay or a specific "cloud" area.
-            // Let's just check if it's stable.
-            
-            // Simple check: if it's too high
-            // We need to make sure it's not the one just spawned (which is static)
-            // And not the one falling (velocity check might be flaky)
-            // Let's rely on a "settled" check or just strict line.
-        }
-    }
 });
 
 // Better Game Over Check:
-// Use a sensor line or just check periodically
 setInterval(() => {
     if (isGameOver) return;
     const bodies = Composite.allBodies(world);
     let crossing = false;
     for (const body of bodies) {
         if (!body.isStatic && body.position.y < DEADLINE_Y) {
-            // Give it a grace period? 
-            // For now, strict check but only if it's not moving much (settled)
             if (Math.abs(body.velocity.y) < 0.2 && Math.abs(body.velocity.x) < 0.2) {
                 crossing = true;
             }
         }
     }
-    
+
     if (crossing) {
-        // Double check after a short delay to ensure it wasn't a bounce
         setTimeout(() => {
-             const bodiesAgain = Composite.allBodies(world);
-             for (const body of bodiesAgain) {
-                 if (!body.isStatic && body.position.y < DEADLINE_Y && Math.abs(body.velocity.y) < 0.2) {
-                     endGame();
-                     return;
-                 }
-             }
+            const bodiesAgain = Composite.allBodies(world);
+            for (const body of bodiesAgain) {
+                if (!body.isStatic && body.position.y < DEADLINE_Y && Math.abs(body.velocity.y) < 0.2) {
+                    endGame();
+                    return;
+                }
+            }
         }, 1000);
     }
 }, 1000);
@@ -255,9 +234,11 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     spawnNewFruit();
 });
 
-// Custom Rendering for Deadline
+// Custom Rendering for Deadline and Emojis
 Events.on(render, 'afterRender', () => {
     const ctx = render.context;
+
+    // Draw Deadline
     ctx.beginPath();
     ctx.moveTo(0, DEADLINE_Y);
     ctx.lineTo(GAME_WIDTH, DEADLINE_Y);
@@ -266,6 +247,26 @@ Events.on(render, 'afterRender', () => {
     ctx.setLineDash([5, 5]);
     ctx.stroke();
     ctx.setLineDash([]);
+
+    // Draw Emojis on Bodies
+    const bodies = Composite.allBodies(world);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    for (const body of bodies) {
+        if (body.typeIndex !== undefined) {
+            const fruitDef = FRUITS[body.typeIndex];
+            const fontSize = fruitDef.radius * 1.5; // Scale emoji to fit
+            ctx.font = `${fontSize}px serif`; // Use serif or sans-serif
+
+            // Save context to rotate with body
+            ctx.save();
+            ctx.translate(body.position.x, body.position.y);
+            ctx.rotate(body.angle);
+            ctx.fillText(fruitDef.emoji, 0, 0); // Draw at center (0,0 because of translate)
+            ctx.restore();
+        }
+    }
 });
 
 // Start Game
