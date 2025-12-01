@@ -16,16 +16,20 @@ A collection of polished, browser-based mini-games.
 ## 🧐 About
 Mini Games Arcade is a project dedicated to creating high-quality, fun, and aesthetically pleasing browser games. The goal is to provide a premium user experience with smooth animations and engaging gameplay.
 
+## 🌐 Live Demo
+Play the game here: [https://mini-games-b1864.web.app](https://mini-games-b1864.web.app)
+
 ## 🕹️ Games
 
 ### 🍉 Suika Game (Watermelon Game)
 A physics-based puzzle game where you drop and merge fruits to create larger ones.
 - **Goal**: Merge fruits to reach the ultimate Watermelon!
 - **Features**:
-    -   Realistic physics using Matter.js
-    -   Premium glassmorphism UI
-    -   Responsive design
-    -   Touch support for mobile devices
+    -   **Cute Emojis**: Fruits are represented by cute emojis (🍒, 🍓, 🍇...).
+    -   **Realistic Physics**: Powered by Matter.js.
+    -   **Premium UI**: Glassmorphism design with smooth animations.
+    -   **Mobile Ready**: Fully responsive design optimized for portrait mode on smartphones.
+    -   **Touch Controls**: Intuitive touch support for mobile play.
 
 ## 🚀 Getting Started
 
