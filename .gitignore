@@ -17,3 +17,9 @@ yarn-error.log
 # Build output (if any in future)
 dist/
 build/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
