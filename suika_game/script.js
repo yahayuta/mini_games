@@ -63,10 +63,50 @@ World.add(world, [ground, leftWall, rightWall]);
 
 // Input Handling
 const gameContainer = document.getElementById('game-container');
+const canvas = render.canvas;
+
+// Handle Window Resize for Scaling
+function handleResize() {
+    const containerWidth = window.innerWidth;
+    const containerHeight = window.innerHeight;
+    const uiHeight = document.querySelector('.ui-panel').offsetHeight + 40; // Approx margin
+    const availableHeight = containerHeight - uiHeight;
+
+    // Calculate scale to fit
+    const scaleX = Math.min(1, (containerWidth - 20) / GAME_WIDTH);
+    const scaleY = Math.min(1, (availableHeight - 20) / GAME_HEIGHT);
+    const scale = Math.min(scaleX, scaleY);
+
+    if (window.innerWidth <= 600) {
+        canvas.style.width = `${GAME_WIDTH * scale}px`;
+        canvas.style.height = `${GAME_HEIGHT * scale}px`;
+    } else {
+        canvas.style.width = `${GAME_WIDTH}px`;
+        canvas.style.height = `${GAME_HEIGHT}px`;
+    }
+}
+
+window.addEventListener('resize', handleResize);
+handleResize(); // Initial call
+
+function getEventPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    let clientX = e.clientX;
+
+    if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+    }
+
+    const x = (clientX - rect.left) * scaleX;
+    return x;
+}
 
 gameContainer.addEventListener('mousemove', (e) => {
     if (disableAction || isGameOver || !currentFruit) return;
-    const x = clampX(e.offsetX, currentFruit.circleRadius);
+    const x = clampX(getEventPos(e), currentFruit.circleRadius);
     Body.setPosition(currentFruit, { x: x, y: currentFruit.position.y });
 });
 
@@ -79,9 +119,7 @@ gameContainer.addEventListener('click', (e) => {
 gameContainer.addEventListener('touchmove', (e) => {
     e.preventDefault();
     if (disableAction || isGameOver || !currentFruit) return;
-    const rect = gameContainer.getBoundingClientRect();
-    const touchX = e.touches[0].clientX - rect.left;
-    const x = clampX(touchX, currentFruit.circleRadius);
+    const x = clampX(getEventPos(e), currentFruit.circleRadius);
     Body.setPosition(currentFruit, { x: x, y: currentFruit.position.y });
 }, { passive: false });
 
