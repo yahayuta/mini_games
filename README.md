@@ -31,6 +31,16 @@ A physics-based puzzle game where you drop and merge fruits to create larger one
     -   **Mobile Ready**: Fully responsive design optimized for portrait mode on smartphones.
     -   **Touch Controls**: Intuitive touch support for mobile play.
 
+### 🔢 2048
+A classic sliding block puzzle game where you combine numbers to reach 2048.
+- **Goal**: Slide and merge tiles to create the 2048 tile!
+- **Features**:
+    -   **Clean Design**: Minimalist aesthetic matching the original 2048.
+    -   **Smooth Animations**: Tile movements and merges are beautifully animated.
+    -   **Score Tracking**: Persistent best score saved locally.
+    -   **Mobile Ready**: Fully responsive with swipe gesture controls.
+    -   **Keyboard & Touch**: Arrow keys for desktop, swipe gestures for mobile.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
