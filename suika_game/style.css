@@ -198,3 +198,20 @@ canvas {
     justify-content: center;
     align-items: center;
 }
+
+.home-btn {
+    display: block;
+    margin-top: auto;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.home-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
