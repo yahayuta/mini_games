@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower Stacker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Tower Stacker</h1>
+            <div class="score-container">Score: <span id="score">0</span></div>
+        </header>
+        
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="start-screen" class="overlay">
+            <h2>Ready?</h2>
+            <p>Tap to stack blocks</p>
+            <button id="start-btn">Start Game</button>
+        </div>
+
+        <div id="game-over-screen" class="overlay hidden">
+            <h2>Game Over</h2>
+            <p>Score: <span id="final-score">0</span></p>
+            <button id="restart-btn">Try Again</button>
+        </div>
+
+        <a href="../index.html" class="back-btn">Back to Menu</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

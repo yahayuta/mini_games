@@ -41,6 +41,15 @@ A classic sliding block puzzle game where you combine numbers to reach 2048.
     -   **Mobile Ready**: Fully responsive with swipe gesture controls.
     -   **Keyboard & Touch**: Arrow keys for desktop, swipe gestures for mobile.
 
+### 🏗️ Tower Stacker
+A timing-based arcade game where you stack blocks as high as possible.
+- **Goal**: Stack blocks perfectly to build the highest tower!
+- **Features**:
+    -   **Neon Aesthetics**: Vibrant colors and glow effects.
+    -   **One-Tap Gameplay**: Simple controls suitable for all devices.
+    -   **Dynamic Difficulty**: Blocks get faster and change colors as you go higher.
+    -   **Responsive**: Works perfectly on mobile and desktop.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
