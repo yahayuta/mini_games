@@ -50,6 +50,15 @@ A timing-based arcade game where you stack blocks as high as possible.
     -   **Dynamic Difficulty**: Blocks get faster and change colors as you go higher.
     -   **Responsive**: Works perfectly on mobile and desktop.
 
+### 🧩 Neon Tetris
+A modern reimagining of the classic block-stacking puzzle.
+- **Goal**: Rotate and drop blocks to clear lines and score points!
+- **Features**:
+    -   **Neon Glass Aesthetic**: Stunning glowing visuals with glassmorphism UI.
+    -   **Smooth Controls**: Responsive touch controls for mobile and keyboard support for desktop.
+    -   **Classic Mechanics**: Authentic rotation system and scoring.
+    -   **Mobile Optimized**: Custom layout for portrait mode on smartphones.
+
 ## 🚀 Getting Started
 
 ### Prerequisites

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Tetris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-animation"></div>
+
+    <div class="game-container">
+        <div class="game-header">
+            <a href="../index.html" class="back-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Back
+            </a>
+            <h1>NEON TETRIS</h1>
+        </div>
+
+        <div class="game-layout">
+            <!-- Left Panel: Hold & Stats -->
+            <div class="side-panel left">
+                <div class="glass-panel hold-piece">
+                    <h2>HOLD</h2>
+                    <canvas id="hold-canvas" width="80" height="80"></canvas>
+                </div>
+                <div class="glass-panel stats">
+                    <div class="stat-item">
+                        <span class="label">SCORE</span>
+                        <span class="value" id="score-stat">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">LEVEL</span>
+                        <span class="value" id="level">1</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">LINES</span>
+                        <span class="value" id="lines">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center: Main Game Board -->
+            <div class="main-board-container glass-panel">
+                <canvas id="game-board" width="250" height="500"></canvas>
+                <div id="game-overlay" class="overlay">
+                    <div class="overlay-content">
+                        <h2 id="overlay-title">PAUSED</h2>
+                        <p id="overlay-score">Score: 0</p>
+                        <button id="start-btn" class="neon-btn">START GAME</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Next & Score -->
+            <div class="side-panel right">
+                <div class="glass-panel next-piece">
+                    <h2>NEXT</h2>
+                    <canvas id="next-canvas" width="80" height="240"></canvas>
+                </div>
+                <div class="glass-panel score-panel">
+                    <h2>SCORE</h2>
+                    <span class="value" id="score">0</span>
+                    <span class="label">HIGH SCORE</span>
+                    <span class="value small" id="high-score">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+            <button class="control-btn" id="rotate-btn">↻</button>
+            <div class="d-pad">
+                <button class="control-btn" id="left-btn">←</button>
+                <button class="control-btn" id="down-btn">↓</button>
+                <button class="control-btn" id="right-btn">→</button>
+            </div>
+            <button class="control-btn" id="drop-btn">⤓</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
