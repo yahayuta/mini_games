@@ -59,6 +59,15 @@ A modern reimagining of the classic block-stacking puzzle.
     -   **Classic Mechanics**: Authentic rotation system and scoring.
     -   **Mobile Optimized**: Custom layout for portrait mode on smartphones.
 
+### 🐍 Neon Snake
+A classic arcade game with a modern neon glow.
+- **Goal**: Navigate the snake to eat food and grow without hitting the walls or yourself!
+- **Features**:
+    -   **Neon Aesthetics**: Glowing visuals on a dark background.
+    -   **Smooth Controls**: Swipe gestures for mobile and keyboard arrow keys for desktop.
+    -   **Score Tracking**: High score saved locally.
+    -   **Adjustable Speed**: Tuned for enjoyable gameplay on all devices.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
