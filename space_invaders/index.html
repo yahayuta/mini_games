@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Invaders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="game-container">
+        <header>
+            <h1>Neon Invaders</h1>
+            <div class="score-board">
+                <div class="score-item">Score: <span id="score">0</span></div>
+                <div class="score-item">High Score: <span id="high-score">0</span></div>
+            </div>
+        </header>
+
+        <canvas id="game-board" width="800" height="600"></canvas>
+
+        <div class="controls-hint">
+            <p>Desktop: Arrow Keys to move, Space to shoot</p>
+            <p>Mobile: Drag to move, Tap to shoot</p>
+        </div>
+
+        <a href="../index.html" class="back-btn">Back to Menu</a>
+    </div>
+
+    <div id="start-screen-modal" class="modal">
+        <div class="modal-content">
+            <h2>Neon Invaders</h2>
+            <p>Ready to defend Earth?</p>
+            <button id="start-btn">Start Game</button>
+            <a href="../index.html" class="menu-btn">Back to Menu</a>
+        </div>
+    </div>
+
+    <div id="game-over-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Game Over</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <p>Wave Reached: <span id="final-wave">1</span></p>
+            <button id="restart-btn">Play Again</button>
+            <a href="../index.html" class="menu-btn">Back to Menu</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -68,6 +68,16 @@ A classic arcade game with a modern neon glow.
     -   **Score Tracking**: High score saved locally.
     -   **Adjustable Speed**: Tuned for enjoyable gameplay on all devices.
 
+### 👾 Neon Invaders
+A modern take on the classic space shooter. Defend Earth from waves of neon aliens!
+- **Goal**: Shoot down all the invaders in each wave before they reach the bottom.
+- **Features**:
+    -   **Vibrant Neon Style**: Crisp, glowing vector-style graphics.
+    -   **Classic Gameplay**: Familiar mechanics with a modern twist.
+    -   **Responsive & Resolution-Independent**: Looks great on any screen size, from mobile to desktop.
+    -   **Mobile Ready**: Fully responsive with touch controls (drag to move, tap to shoot).
+    -   **Keyboard Support**: Arrow keys to move and Space to shoot on desktop.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
